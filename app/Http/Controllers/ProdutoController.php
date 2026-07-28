@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AtualizarProduto;
+use App\Http\Requests\ExcluirProduto;
 use App\Http\Requests\MostrarProduto;
 use App\Http\Requests\SalvarProduto;
 use App\Models\Produto;
@@ -35,7 +36,7 @@ class ProdutoController extends Controller
         return response()->json($produto, 200);
     }
 
-    function destroy($id){
+    function destroy(ExcluirProduto $id){
         $produto = Produto::findOrFail($id);
         $produto->delete();
         return response()->json(['message' => 'Produto excluído com sucesso'], 200);
