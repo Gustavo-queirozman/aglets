@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MostrarProduto;
 use App\Http\Requests\SalvarProduto;
 use App\Models\Produto;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class ProdutoController extends Controller
         return response()->json($produto, 200);
     }
 
-    function show($id){}
+    function show(MostrarProduto $id){}
 
     //function edit($id){}
 
