@@ -9,3 +9,5 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('/produtos', [App\Http\Controllers\ProdutoController::class, 'index']);
+Route::get('/produto/{id}', [App\Http\Controllers\ProdutoController::class, 'show']);
+
