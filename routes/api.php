@@ -12,3 +12,4 @@ Route::get('/produtos', [App\Http\Controllers\ProdutoController::class, 'index']
 Route::get('/produto/{id}', [App\Http\Controllers\ProdutoController::class, 'show']);
 Route::post('/produto', [App\Http\Controllers\ProdutoController::class, 'store']);
 Route::put('/produto/{id}', [App\Http\Controllers\ProdutoController::class, 'update']);
+Route::delete('/produto/{id}', [App\Http\Controllers\ProdutoController::class, 'destroy']);
