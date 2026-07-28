@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AtualizarProduto;
 use App\Http\Requests\MostrarProduto;
 use App\Http\Requests\SalvarProduto;
 use App\Models\Produto;
@@ -21,11 +22,18 @@ class ProdutoController extends Controller
         return response()->json($produto, 200);
     }
 
-    function show(MostrarProduto $id){}
+    function show(MostrarProduto $request){
+        $produto = Produto::findOrFail($request->id);
+        return response()->json($produto, 200);
+    }
 
     //function edit($id){}
 
-    function update(Request $request, $id){}
+    function update(AtualizarProduto $request, $id){
+        $produto = Produto::findOrFail($id);
+        $produto->update($request->validated());
+        return response()->json($produto, 200);
+    }
 
     function destroy($id){}
 }
