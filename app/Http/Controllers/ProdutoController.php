@@ -13,19 +13,19 @@ class ProdutoController extends Controller
 {
     function index(){
         $produtos = Produto::all();
-        return response()->json($produtos, 200);
+        return response()->json(['message' => 'Lista de produtos', 'produtos' => $produtos], 200);
     }
 
     //function create(){}
 
     function store(SalvarProduto $request){
         $produto = Produto::create($request->validated());
-        return response()->json($produto, 200);
+        return response()->json(['message' => 'Produto criado com sucesso', 'produto' => $produto], 201);
     }
 
     function show(MostrarProduto $request){
         $produto = Produto::findOrFail($request->id);
-        return response()->json($produto, 200);
+        return response()->json(['message' => 'Produto encontrado com sucesso', 'produto' => $produto], 200);
     }
 
     //function edit($id){}
@@ -33,7 +33,7 @@ class ProdutoController extends Controller
     function update(AtualizarProduto $request, $id){
         $produto = Produto::findOrFail($id);
         $produto->update($request->validated());
-        return response()->json($produto, 200);
+        return response()->json(['message' => 'Produto atualizado com sucesso', 'produto' => $produto], 200);
     }
 
     function destroy(ExcluirProduto $id){
