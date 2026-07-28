@@ -35,5 +35,9 @@ class ProdutoController extends Controller
         return response()->json($produto, 200);
     }
 
-    function destroy($id){}
+    function destroy($id){
+        $produto = Produto::findOrFail($id);
+        $produto->delete();
+        return response()->json(['message' => 'Produto excluído com sucesso'], 200);
+    }
 }
