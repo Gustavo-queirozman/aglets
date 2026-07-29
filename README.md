@@ -13,8 +13,8 @@ Antes de iniciar, certifique-se de que os seguintes recursos estão instalados:
 ## Clonar o Projeto
 
 ```bash
-git clone <https://github.com/Gustavo-queirozman/aglets.git>
-cd <aglets>
+git clone https://github.com/Gustavo-queirozman/aglets.git
+cd aglets
 ```
 
 ## Instalar Dependências
