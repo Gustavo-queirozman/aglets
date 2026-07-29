@@ -3,42 +3,41 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AtualizarProduto;
-use App\Http\Requests\ExcluirProduto;
-use App\Http\Requests\MostrarProduto;
 use App\Http\Requests\SalvarProduto;
 use App\Models\Produto;
-use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
-    function index(){
+    public function index()
+    {
         $produtos = Produto::all();
+
         return response()->json(['message' => 'Lista de produtos', 'produtos' => $produtos], 200);
     }
 
-    //function create(){}
-
-    function store(SalvarProduto $request){
+    public function store(SalvarProduto $request)
+    {
         $produto = Produto::create($request->validated());
+
         return response()->json(['message' => 'Produto criado com sucesso', 'produto' => $produto], 201);
     }
 
-    function show(MostrarProduto $request){
-        $produto = Produto::findOrFail($request->id);
+    public function show(Produto $produto)
+    {
         return response()->json(['message' => 'Produto encontrado com sucesso', 'produto' => $produto], 200);
     }
 
-    //function edit($id){}
-
-    function update(AtualizarProduto $request, $id){
-        $produto = Produto::findOrFail($id);
+    public function update(AtualizarProduto $request, Produto $produto)
+    {
         $produto->update($request->validated());
+
         return response()->json(['message' => 'Produto atualizado com sucesso', 'produto' => $produto], 200);
     }
 
-    function destroy(ExcluirProduto $id){
-        $produto = Produto::findOrFail($id);
+    public function destroy(Produto $produto)
+    {
         $produto->delete();
-        return response()->json(['message' => 'Produto excluído com sucesso'], 200);
+
+        return response()->json(['message' => 'Produto excluido com sucesso'], 200);
     }
 }
