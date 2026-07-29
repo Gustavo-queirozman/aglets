@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Produto extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'nome',
         'descricao',
@@ -15,5 +16,9 @@ class Produto extends Model
         'quantidade'
     ];
 
+    protected $casts = [
+        'preco' => 'decimal:2',
+        'quantidade' => 'integer',
+    ];
 
 }

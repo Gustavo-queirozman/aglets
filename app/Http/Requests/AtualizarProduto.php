@@ -23,7 +23,10 @@ class AtualizarProduto extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => ['required', 'integer', 'exists:products,id']
+            'nome' => ['sometimes', 'string', 'max:255'],
+            'descricao' => ['sometimes', 'nullable', 'string'],
+            'preco' => ['sometimes', 'numeric', 'min:0'],
+            'quantidade' => ['sometimes', 'integer', 'min:0'],
         ];
     }
 }

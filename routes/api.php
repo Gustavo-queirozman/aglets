@@ -9,7 +9,7 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('/produtos', [App\Http\Controllers\ProdutoController::class, 'index']);
-Route::get('/produto/{id}', [App\Http\Controllers\ProdutoController::class, 'show']);
+Route::match(['get', 'post'], '/produto/{produto}', [App\Http\Controllers\ProdutoController::class, 'show'])->whereNumber('produto');
 Route::post('/produto', [App\Http\Controllers\ProdutoController::class, 'store']);
-Route::put('/produto/{id}', [App\Http\Controllers\ProdutoController::class, 'update']);
-Route::delete('/produto/{id}', [App\Http\Controllers\ProdutoController::class, 'destroy']);
+Route::match(['put', 'patch'], '/produto/{produto}', [App\Http\Controllers\ProdutoController::class, 'update'])->whereNumber('produto');
+Route::delete('/produto/{produto}', [App\Http\Controllers\ProdutoController::class, 'destroy'])->whereNumber('produto');
