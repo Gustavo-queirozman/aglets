@@ -1,0 +1,147 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Aglets
+meta:
+  id: wrk_6c687e244be549faaa0278607e012a80
+  created: 1785257849479
+  modified: 1785257849479
+  description: ""
+collection:
+  - url: http://localhost:8000/api/products?name=Mouse&min_price=29&max_price=400
+    name: buscar avançada produtos
+    meta:
+      id: req_694401f773304de7a30af7cfe84bbf79
+      created: 1785257853275
+      modified: 1785437123762
+      isPrivate: false
+      description: ""
+      sortKey: -1785257853275
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/api/product/1
+    name: buscar produto
+    meta:
+      id: req_f7e8427109474afcb480b68bfa264a77
+      created: 1785261204713
+      modified: 1785430600611
+      isPrivate: false
+      description: ""
+      sortKey: -1785261204713
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/api/product
+    name: New Request
+    meta:
+      id: req_b3c9caed21814dd8af463fd20cb59e0a
+      created: 1785261250249
+      modified: 1785430560802
+      isPrivate: false
+      description: ""
+      sortKey: -1785261250249
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"nome": "Mouse",
+        	"descricao": "Mouse com cabo",
+        	"preco": 29,
+        	"quantidade": 10
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/api/product/1
+    name: New Request
+    meta:
+      id: req_3f9843acc26a47d5b70d82f58569149e
+      created: 1785265243578
+      modified: 1785430568857
+      isPrivate: false
+      description: ""
+      sortKey: -1785265243578
+    method: DELETE
+    body:
+      mimeType: application/json
+      text: ""
+    headers:
+      - name: Content-Type
+        value: application/json
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - url: http://localhost:8000/api/products
+    name: Busca de produtos
+    meta:
+      id: req_dab7344ae7714062bc97c479b211de97
+      created: 1785437033143
+      modified: 1785437047650
+      isPrivate: false
+      description: ""
+      sortKey: -1785437033143
+    method: GET
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_040f9a9b1cc7b065fb4ad2efe7090d1515002806
+    created: 1785257849482
+    modified: 1785265229960
+  cookies:
+    - id: fb5fa252-81c9-4dbe-8001-4faebd5398a3
+      key: XSRF-TOKEN
+      value: eyJpdiI6IlVzbjlwTm1mRUpabnl4ekljSlBoYVE9PSIsInZhbHVlIjoidUo1KzJIUEZlRnZSdlJjSUtCdURJNjJlYVNiUCtHZlU1T0VlZTF4SkovWm5yTlBVQXRicW1IT3RhNlJELzJCWlFxOWRaSC9zQ3lwZjR0cmJ5WEZLQklnQ0tUQXo0UjEwblltaWFEME5XaDBwVDNiS0ZaK2YxcFJZa1RXWVBVNU0iLCJtYWMiOiI2OTFhYzhlODI2MzFjMjU2NGIyYTZjYjU0ODFhYzc3MTdhNWEyMGJmYzZlNTUwNGEzMGZjMjc5YjhiM2MwZWEyIiwidGFnIjoiIn0%3D
+      domain: localhost
+      path: /
+      secure: false
+      httpOnly: false
+      hostOnly: true
+    - id: 9f2a9177-097b-49ac-9e8a-86b7350311bc
+      key: laravel-session
+      value: eyJpdiI6ImxuVHl1dUdvSnhRM1FUTFlPZGdnV3c9PSIsInZhbHVlIjoiZHNBZW5QYWkxdmg4SE9GYUpkQUR0OTdhT1lmSDk4OXhDcnZyd25JVFBab09oZldkSFF6eUx0TXVPZzYxZEdjdmNWeTlFQVZCbTEwTlRhSEwzOFN0d29uTHdBUzJ0clVHQmMyUkpRRXpFVWNqVitFOVI4dmZVWDRSVlZCTGExNloiLCJtYWMiOiJjZDRkMzExYTA0ZmQ0ZDQ4MjY2MGI4MzA4OGRmODkwNmEyYzlmNWE5YWZmNmI4MWViMzQ3OWNhY2QxNTBjMDJlIiwidGFnIjoiIn0%3D
+      domain: localhost
+      path: /
+      secure: false
+      httpOnly: true
+      hostOnly: true
+environments:
+  name: Base Environment
+  meta:
+    id: env_040f9a9b1cc7b065fb4ad2efe7090d1515002806
+    created: 1785257849481
+    modified: 1785257849481
+    isPrivate: false
