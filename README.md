@@ -1,45 +1,52 @@
-# Projeto Laravel
+# Aglets
+
+API Laravel para gerenciamento de produtos.
 
 ## Requisitos
 
-Antes de iniciar, certifique-se de que os seguintes recursos estão instalados:
-
 - PHP 8.2 ou superior
 - Composer
-- Banco de dados MariaDB
-- Node.js 18+ e NPM
+- MariaDB ou MySQL
+- Node.js 18+ e npm
 - Git
+- Redis opcional
 
-## Clonar o Projeto
+## Clonar o projeto
 
 ```bash
 git clone https://github.com/Gustavo-queirozman/aglets.git
 cd aglets
 ```
 
-## Instalar Dependências
+## Instalação
 
-### Dependências PHP
+Instale as dependências do backend:
 
 ```bash
 composer install
 ```
 
-### Dependências Front-end
+Instale as dependências do frontend:
 
 ```bash
 npm install
 ```
 
-## Configurar Ambiente
-
-Copie o arquivo de exemplo:
+Copie o arquivo de ambiente:
 
 ```bash
 cp .env.example .env
 ```
 
-Edite o arquivo `.env` e configure as variáveis de ambiente, principalmente:
+No Windows PowerShell, você também pode usar:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+## Configuração do ambiente
+
+Edite o arquivo `.env` com os dados da aplicação e do banco:
 
 ```env
 APP_NAME="Aglets"
@@ -55,19 +62,19 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-## Gerar Chave da Aplicação
+Gere a chave da aplicação:
 
 ```bash
 php artisan key:generate
 ```
 
-## Executar Migrações
+Execute as migrations:
 
 ```bash
 php artisan migrate
 ```
 
-Caso existam seeders:
+Se necessário, rode os seeders:
 
 ```bash
 php artisan db:seed
@@ -79,37 +86,106 @@ Ou:
 php artisan migrate --seed
 ```
 
-## Compilar Assets
+## Redis
 
-### Ambiente de Desenvolvimento
+O projeto já possui suporte a Redis e inclui a dependência `predis/predis` no `composer.json`.
 
-```bash
-npm run dev
+Por padrão, a aplicação usa:
+
+- `CACHE_STORE=database`
+- `QUEUE_CONNECTION=database`
+- `SESSION_DRIVER=database`
+
+Se quiser usar Redis, configure as variáveis abaixo no `.env`:
+
+```env
+REDIS_CLIENT=phpredis
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+REDIS_DB=0
+REDIS_CACHE_DB=1
 ```
 
-### Ambiente de Produção
+Se a extensão `phpredis` não estiver instalada, o projeto pode usar `predis` como cliente Redis.
 
-```bash
-npm run build
+### Usar Redis para cache
+
+```env
+CACHE_STORE=redis
 ```
 
-## Executar o Projeto
+### Usar Redis para filas
 
-Inicie o servidor Laravel:
+```env
+QUEUE_CONNECTION=redis
+REDIS_QUEUE=default
+REDIS_QUEUE_CONNECTION=default
+REDIS_QUEUE_RETRY_AFTER=90
+```
+
+Inicie o worker de filas:
+
+```bash
+php artisan queue:work redis
+```
+
+### Usar Redis para sessão
+
+```env
+SESSION_DRIVER=redis
+SESSION_CONNECTION=default
+SESSION_STORE=redis
+```
+
+Observação: para sessão em Redis, o store `redis` já está definido em `config/cache.php`.
+
+## Executar o projeto
+
+Para ambiente local simples:
 
 ```bash
 php artisan serve
 ```
 
-A aplicação estará disponível em:
+A aplicação ficará disponível em:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-## Comandos Úteis
+Para desenvolvimento completo com servidor, fila, logs e Vite:
 
-Limpar cache:
+```bash
+composer run dev
+```
+
+## Assets
+
+Modo desenvolvimento:
+
+```bash
+npm run dev
+```
+
+Build de produção:
+
+```bash
+npm run build
+```
+
+## Endpoints principais
+
+- `GET /api/products`
+- `GET /api/product/{id}`
+- `POST /api/product`
+- `PUT /api/product/{id}`
+- `PATCH /api/product/{id}`
+- `DELETE /api/product/{id}`
+
+## Comandos úteis
+
+Limpar caches:
 
 ```bash
 php artisan optimize:clear
@@ -127,16 +203,19 @@ Executar testes:
 php artisan test
 ```
 
-## Estrutura Recomendada para Deploy
+## Deploy
 
-1. Configurar variáveis de ambiente em produção.
+Fluxo recomendado:
+
+1. Configurar as variáveis de ambiente de produção.
 2. Executar `composer install --no-dev --optimize-autoloader`.
 3. Executar `php artisan migrate --force`.
 4. Executar `npm run build`.
-5. Configurar permissões das pastas `storage` e `bootstrap/cache`.
+5. Garantir permissões para `storage` e `bootstrap/cache`.
+6. Se estiver usando Redis para filas, iniciar um worker em produção.
 
 ## Suporte
 
-Em caso de dúvidas, consulte a documentação oficial do Laravel:
+Documentação oficial do Laravel:
 
-https://laravel.com/docs
+[https://laravel.com/docs](https://laravel.com/docs)
