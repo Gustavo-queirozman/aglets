@@ -8,6 +8,18 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        config([
+            'cache.stores.redis' => [
+                'driver' => 'array',
+                'serialize' => false,
+            ],
+        ]);
+    }
+
     public function createApplication()
     {
         $this->clearBootstrapCaches();
