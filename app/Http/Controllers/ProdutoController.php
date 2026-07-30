@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AtualizarProduto;
+use App\Http\Requests\ListarProdutosRequest;
 use App\Http\Requests\SalvarProduto;
 use App\Models\Produto;
 
 class ProdutoController extends Controller
 {
-    public function index()
+    public function index(ListarProdutosRequest $request)
     {
-        $produtos = Produto::all();
+        $produtos = Produto::query()
+            ->filtrar($request->filtros())
+            ->get();
 
         return response()->json(['message' => 'Lista de produtos', 'produtos' => $produtos], 200);
     }
