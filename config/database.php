@@ -145,7 +145,11 @@ return [
 
     'redis' => [
 
-        'client' => env('REDIS_CLIENT', 'phpredis'),
+        'client' => match (env('REDIS_CLIENT')) {
+            'phpredis' => extension_loaded('redis') ? 'phpredis' : 'predis',
+            'predis' => 'predis',
+            default => extension_loaded('redis') ? 'phpredis' : 'predis',
+        },
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),

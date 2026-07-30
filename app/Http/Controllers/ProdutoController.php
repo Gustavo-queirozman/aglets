@@ -11,9 +11,7 @@ class ProdutoController extends Controller
 {
     public function index(ListarProdutosRequest $request)
     {
-        $produtos = Produto::query()
-            ->filtrar($request->filtros())
-            ->get();
+        $produtos = Produto::listarComCache($request->filtros());
 
         return response()->json(['message' => 'Lista de produtos', 'produtos' => $produtos], 200);
     }
