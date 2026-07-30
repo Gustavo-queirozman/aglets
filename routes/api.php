@@ -8,8 +8,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::get('/produtos', [App\Http\Controllers\ProdutoController::class, 'index']);
-Route::match(['get', 'post'], '/produto/{produto}', [App\Http\Controllers\ProdutoController::class, 'show'])->whereNumber('produto');
-Route::post('/produto', [App\Http\Controllers\ProdutoController::class, 'store']);
-Route::match(['put', 'patch'], '/produto/{produto}', [App\Http\Controllers\ProdutoController::class, 'update'])->whereNumber('produto');
-Route::delete('/produto/{produto}', [App\Http\Controllers\ProdutoController::class, 'destroy'])->whereNumber('produto');
+Route::get('/products', [App\Http\Controllers\ProdutoController::class, 'index']);
+Route::match(['get', 'post'], '/product/{product}', [App\Http\Controllers\ProdutoController::class, 'show'])->whereNumber('produto');
+Route::post('/product', [App\Http\Controllers\ProdutoController::class, 'store']);
+Route::match(['put', 'patch'], '/product/{product}', [App\Http\Controllers\ProdutoController::class, 'update'])->whereNumber('produto');
+Route::delete('/product/{product}', [App\Http\Controllers\ProdutoController::class, 'destroy'])->whereNumber('produto');
